@@ -64,7 +64,8 @@ let server = http.createServer(function (req, res){
       if (urlData.length < 4) {
         res.end(message);
       }else{
-        urlData[3] = urlData[3].replace(/\W\d+/g, " ");
+        urlData[3] = decodeURI(urlData[3]);
+        //urlData[3] = urlData[3].replace(/\W\d+/g, " ");
         writeFile(urlData[2], urlData[3]);
         res.end(`'${urlData[3]}' >> stored in file '${urlData[2]}'`);
       }
